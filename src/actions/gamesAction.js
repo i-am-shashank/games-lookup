@@ -3,11 +3,11 @@ import { popularGamesURL, newGamesURL, upcomingGamesURL } from "../api";
 
 //ACTION CREATOR
 
-export const loadGames = () => async (dispatch) => {
+export const loadGames = (page) => async (dispatch) => {
   //FETCH AXIOS
-  const popularData = await axios.get(popularGamesURL());
-  const newGamesData = await axios.get(newGamesURL());
-  const upcomingData = await axios.get(upcomingGamesURL());
+  const popularData = await axios.get(popularGamesURL(page));
+  const newGamesData = await axios.get(newGamesURL(page));
+  const upcomingData = await axios.get(upcomingGamesURL(page));
   dispatch({
     type: "FETCH_GAMES",
     payload: {
