@@ -1,14 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { New, Popular, Upcoming } from "../components/Games";
 import { loadGames } from "../actions/gamesAction";
+import { HiArrowCircleUp } from "react-icons/hi";
 //MATERIAL-UI
 import PropTypes from "prop-types";
-import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import Nav from "../components/Nav";
+import { transform } from "framer-motion";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,36 +45,46 @@ function a11yProps(index) {
   };
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-    backgroundColor: "transparent",
-    width: "100%",
-  },
-}));
-
 export default function Home() {
-  const classes = useStyles();
+  // MATERIAL UI
   const [value, setValue] = React.useState(0);
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  //   FETCH GAMES
+
+  // FETCH GAMES
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(loadGames());
   }, [dispatch]);
 
+  // ARROW LOGIC
+  const [showArrow, setshowArrow] = useState(false);
+  window.onscroll = () => {
+    setshowArrow(true);
+  };
+  const arrowStyles = {
+    position: "fixed",
+    bottom: "1rem",
+    right: "1rem",
+    fontSize: "3.2rem",
+    zIndex: "9",
+    cursor: "pointer",
+  };
+  const onUpArrow = (event) => {
+    event.target.style.transform = "scale(102%)";
+    setTimeout(() => {
+      event.target.style.transform = "scale(100%)";
+    }, 200);
+    window.scrollBy({ left: 0, top: -window.scrollY, behavior: 'smooth' });
+  };
+
   return (
-    <div className={classes.root}>
-      <h1>Games Lookup</h1>
+    <div>
+      <Nav />
+      {showArrow && <HiArrowCircleUp onClick={onUpArrow} style={arrowStyles} />}
       <div>
-        <Tabs
-          value={value}
-          onChange={handleChange}
-          indicatorColor="secondary"
-        >
+        <Tabs value={value} onChange={handleChange} indicatorColor="secondary">
           <Tab label="New Games" {...a11yProps(0)} />
           <Tab label="Popular Games" {...a11yProps(1)} />
           <Tab label="Upcoming Games" {...a11yProps(2)} />
