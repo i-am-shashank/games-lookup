@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { HiArrowCircleUp } from "react-icons/hi";
 import InfiniteScroll from "react-infinite-scroller";
 import { useDispatch } from "react-redux";
@@ -11,7 +11,6 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Nav from "../components/Nav";
-import { transform } from "framer-motion";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;

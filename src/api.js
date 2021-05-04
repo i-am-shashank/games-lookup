@@ -31,3 +31,5 @@ export const popularGamesURL = (page) =>
 export const upcomingGamesURL = (page) =>
   `${base_url}${upcoming_games}&page=${page}`;
 export const newGamesURL = (page) => `${base_url}${new_games}&page=${page}`;
+export const searchGamesURL = (game_name) =>
+  `${base_url}games?key=${process.env.REACT_APP_GAME_API}&search=${game_name}&page_size=9`;
