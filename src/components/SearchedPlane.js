@@ -2,21 +2,29 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { GiCrossedSabres } from "react-icons/gi";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import GameCard from "./GameCard";
+import { select } from "../actions/selectedAction";
 
 export default function SearchedPlane({ showSearched, setshowSearched }) {
+  const dispatch = useDispatch();
+  const onCardClickHandler = (obj) => {
+    dispatch(select(obj));
+  };
   const searched_games = useSelector((state) => state.games.searched);
-  const onClickHandler = () => {
+  const onCrossClickHandler = () => {
     setshowSearched(!showSearched);
   };
   console.log(searched_games);
+
   return (
     <Wrapper className="test">
-      <GiCrossedSabres className="crossIco" onClick={onClickHandler} />
+      <GiCrossedSabres className="crossIco" onClick={onCrossClickHandler} />
       {searched_games.map((obj) => (
         <GameCard
+          onClick={() => onCardClickHandler(obj)}
           secondary
+          slug={obj.slug}
           name={obj.name}
           img={obj.background_image}
           released={obj.released}
@@ -52,5 +60,5 @@ const Wrapper = styled(motion.div)`
   padding: 1rem;
   display: flex;
   flex-wrap: wrap;
-  overflow: scroll;
+  overflow-y: scroll;
 `;

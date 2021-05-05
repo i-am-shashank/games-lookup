@@ -1,16 +1,26 @@
 import React from "react";
 import { motion } from "framer-motion";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
-export default function GameCard({ name, img, released, id, ...props }) {
+export default function GameCard({
+  name,
+  img,
+  released,
+  slug,
+  id,
+  ...props
+}) {
   return (
-    <Card key={id} {...props}>
-      <img alt="error loading img data" src={img} />
-      <p className="name">
-        {name.length <= 32 ? name : name.substring(0, 32) + "..."}
-      </p>
-      <p className="released">released: {released}</p>
-    </Card>
+    <Link to={`/${slug}/`} style={{ textDecoration: "none" }}>
+      <Card key={id} {...props}>
+        <img alt="error loading img data" src={img} />
+        <p className="name">
+          {name.length <= 32 ? name : name.substring(0, 32) + "..."}
+        </p>
+        <p className="released">released: {released}</p>
+      </Card>
+    </Link>
   );
 }
 export const Wrapper = styled(motion.div)`
@@ -40,7 +50,7 @@ const Card = styled(motion.div)`
   margin: 1rem;
   height: max-content;
   max-width: 24rem;
-  padding: ${(props) => (props.secondary ? "0.4rem" : "0.8rem")};;
+  padding: ${(props) => (props.secondary ? "0.4rem" : "0.8rem")};
   border-radius: 4px;
   overflow: hidden;
   cursor: pointer;
