@@ -9,7 +9,7 @@ import thunk from "redux-thunk";
 //ROUTING SETUP
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
-import Description from "./pages/Description";
+import GameDetailed from "./pages/GameDetailed";
 
 const composedEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
@@ -22,7 +22,7 @@ ReactDOM.render(
     <Provider store={store}>
       <Router>
       <Route exact path="/" component={App} />
-      <Route path="/" component={Description} />
+      <Route path="/game/" component={GameDetailed} />
       </Router>
     </Provider>
   </React.StrictMode>,

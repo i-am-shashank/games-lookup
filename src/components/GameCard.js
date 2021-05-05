@@ -12,7 +12,7 @@ export default function GameCard({
   ...props
 }) {
   return (
-    <Link to={`/${slug}/`} style={{ textDecoration: "none" }}>
+    <Link to={`/game/${slug}/`} style={{ textDecoration: "none" }}>
       <Card key={id} {...props}>
         <img alt="error loading img data" src={img} />
         <p className="name">

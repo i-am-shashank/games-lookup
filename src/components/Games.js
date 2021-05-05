@@ -40,7 +40,7 @@ function Popular() {
       {games.popular.map((obj) => {
         return (
           <GameCard
-            onClick={(obj)=> onCardClickHandler}
+            onClick={()=> onCardClickHandler(obj)}
             slug={obj.slug}
             name={obj.name}
             img={obj.background_image}
@@ -64,7 +64,7 @@ function Upcoming() {
       {games.upcoming.map((obj) => {
         return (
           <GameCard
-            onClick={(obj)=> onCardClickHandler}
+            onClick={()=> onCardClickHandler(obj)}
             slug={obj.slug}
             name={obj.name}
             img={obj.background_image}

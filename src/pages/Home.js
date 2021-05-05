@@ -83,7 +83,7 @@ export default function Home() {
     <div>
       <InfiniteScroll
         pageStart={0}
-        loadMore={(page)=> dispatch(loadGames(page))}
+        loadMore={(page) => dispatch(loadGames(page))}
         hasMore={true}
         loader={
           <div className="loader" key={0}>
@@ -101,19 +101,19 @@ export default function Home() {
             onChange={handleChange}
             indicatorColor="secondary"
           >
-            <Tab label="New Games" {...a11yProps(0)} />
+            <Tab label="Upcoming Games" {...a11yProps(0)} />
             <Tab label="Popular Games" {...a11yProps(1)} />
-            <Tab label="Upcoming Games" {...a11yProps(2)} />
+            <Tab label="New Games" {...a11yProps(2)} />
           </Tabs>
         </div>
         <TabPanel value={value} index={0}>
-          <New />
+          <Upcoming />
         </TabPanel>
         <TabPanel value={value} index={1}>
           <Popular />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <Upcoming />
+          <New />
         </TabPanel>
       </InfiniteScroll>
     </div>
